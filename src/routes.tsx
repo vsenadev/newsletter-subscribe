@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from '../src/pages/Home'
+import Home from './pages/Home/Home'
 
 export default function AppRouter() {
     return(
