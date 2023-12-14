@@ -55,16 +55,29 @@
 
       &_mail
         height: 6rem
+        width: 100%
         display: flex
         flex-direction: column
         justify-content: flex-end
         gap: 0.5rem
 
-        &_label
-          font-size: 12px
-          font-family: $title-font
-          font-weight: $title-weight
-          color: $CharcoalGrey
+        &_div
+          display: flex
+          width: 35rem
+          justify-content: space-between
+          align-items: center
+
+          &_label
+            font-size: 12px
+            font-family: $title-font
+            font-weight: $title-weight
+            color: $CharcoalGrey
+
+          &_error
+            font-size: 12px
+            font-family: $title-font
+            font-weight: $title-weight
+            color: $tomato
 
         &_input
           height: 3rem

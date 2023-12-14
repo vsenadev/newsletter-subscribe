@@ -7,8 +7,8 @@ import {validateEmail} from "../../utils/Home";
 
 export default function Home(){
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(false);
-    console.log(validEmail)
+    const [validEmail, setValidEmail] = useState(true);
+
     return(
         <section className={styles.container}>
             <div className={styles.container__box}>
@@ -26,9 +26,18 @@ export default function Home(){
                         }
                     </div>
                     <div className={styles.container__box_content_mail}>
-                        <label className={styles.container__box_content_mail_label}>Email address</label>
+                        <div className={styles.container__box_content_mail_div}>
+                            <label className={styles.container__box_content_mail_div_label}>Email address</label>
+                            {
+                                !validEmail&&(
+                                    <span className={styles.container__box_content_mail_div_error}>Valid email required</span>
+                                )
+                            }
+                            <span></span>
+                        </div>
                         <input
                             className={styles.container__box_content_mail_input}
+                            style={!validEmail ? {backgroundColor:"hsla(4,100%,67%,0.21);color: hsl(4, 100%, 67%)"}:{}}
                             placeholder='email@company.com'
                             type='text'
                             value={email}
