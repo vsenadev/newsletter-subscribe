@@ -2,12 +2,23 @@ import styles from './Home.module.sass'
 import data from '../../data/home.json'
 import { ReactComponent as CorrectLogo } from '../../assets/images/icon-list.svg'
 import Banner from '../../assets/images/illustration-sign-up-desktop.svg'
-import {useState} from "react";
-import {validateEmail} from "../../utils/Home";
+import {useContext} from "react";
+import {validateEmail} from "../../utils/Home.utils";
+import {GlobalContext} from "../../store/GlobalState";
+import { useNavigate } from "react-router-dom";
 
 export default function Home(){
-    const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(true);
+    const { email, setEmail, validEmail, setValidEmail, called, setCalled }: any= useContext(GlobalContext);
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        setCalled(true)
+
+        if (validateEmail(email)) {
+            setValidEmail(true)
+            navigate("/success");
+        }
+    };
 
     return(
         <section className={styles.container}>
@@ -29,7 +40,7 @@ export default function Home(){
                         <div className={styles.container__box_content_mail_div}>
                             <label className={styles.container__box_content_mail_div_label}>Email address</label>
                             {
-                                !validEmail&&(
+                                (!validEmail && called)&&(
                                     <span className={styles.container__box_content_mail_div_error}>Valid email required</span>
                                 )
                             }
@@ -44,7 +55,7 @@ export default function Home(){
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
-                    <button onClick={() => validateEmail(email, setValidEmail)} className={styles.container__box_content_button}>Subscribe to monthly newsletter</button>
+                    <button onClick={handleButtonClick} className={styles.container__box_content_button}>Subscribe to monthly newsletter</button>
                 </div>
                 <div className={styles.container__box_image}>
                     <img src={Banner} alt='banner'/>
