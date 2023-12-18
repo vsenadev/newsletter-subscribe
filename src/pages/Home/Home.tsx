@@ -1,14 +1,16 @@
 import styles from './Home.module.sass'
-import data from '../../data/home.json'
 import { ReactComponent as CorrectLogo } from '../../assets/images/icon-list.svg'
 import Banner from '../../assets/images/illustration-sign-up-desktop.svg'
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {validateEmail} from "../../utils/Home.utils";
 import {GlobalContext} from "../../store/GlobalState";
 import { useNavigate } from "react-router-dom";
+import {IDifferences} from "../../interface/IDifferences";
+import {GetDifferences} from "../../request/Home.request";
 
 export default function Home(){
     const { email, setEmail, validEmail, setValidEmail, called, setCalled }: any= useContext(GlobalContext);
+    const [data, setData] = useState<IDifferences>()
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
@@ -20,6 +22,10 @@ export default function Home(){
         }
     };
 
+    useEffect(() => {
+        GetDifferences(setData)
+    }, []);
+
     return(
         <section className={styles.container}>
             <div className={styles.container__box}>
@@ -28,7 +34,7 @@ export default function Home(){
                     <p className={styles.container__box_content_description}>Join 60,000+ product managers receiving monthly updates on:</p>
                     <div className={styles.container__box_content_div}>
                         {
-                            data.diferrences.map((element: string) => (
+                            data?.differences.map((element: string) => (
                                 <div className={styles.container__box_content_div_content} key={element}>
                                     <CorrectLogo/>
                                     <p>{element}</p>
