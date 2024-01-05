@@ -4,7 +4,7 @@
 O Newsletter Subscribe é uma aplicação desenvolvida em React, TypeScript (TS) e Sass, criada para facilitar a inscrição e recebimento de newsletters. Proporcionando uma experiência simples e eficaz, os usuários podem preencher o formulário de inscrição para receber atualizações regulares e informações relevantes.
 
 ## Aplicação em produção
-newsletter-subscribe-2cvtzbtr5-vsena21.vercel.app
+https://newsletter-subscribe-two.vercel.app/
 
 ## Tecnologias Utilizadas
 [![My Skills](https://skillicons.dev/icons?i=react,ts,sass)](https://skillicons.dev)
